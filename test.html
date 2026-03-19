@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    .btnBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      background-color: #f00;
+      border-radius: 50%;
+      margin: 0 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="btnBox">
+  <div class="btn" onclick="push(1)">庄</div>
+  <div class="btn" onclick="push(2)">闲</div>
+  <div class="btn" onclick="push(3)">平</div>
+</div>
+<div class="scrollBox">
+  <div id="resBox">
+    <div>
+      <div>
+        <span class="z">庄</span>
+      </div>
+      <div>
+        <span class="x">闲</span>
+      </div>
+      <div>
+        <span class="p">平</span>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>
+<div id="luBox"></div>
+<script>
+	// 开庄统计
+	let obj = {
+		z: 0,
+		x: 0,
+		p: 0
+	}
+	// 所有开庄
+	let resArr = [];
+	// 路
+	let luArr = [];
+	
+	let resBox = document.getElementById('resBox');
+	let luBox = document.getElementById('luBox');
+	
+	function push(zxp) {
+		// 添加开庄结果
+		resArr.push(zxp);
+		// 添加统计开庄结果
+		if (zxp === 1) {
+			obj.z++;
+		} else if (zxp === 2) {
+			obj.x++;
+		} else if (zxp === 3) {
+			obj.p++;
+		}
+		// 添加路
+		if (luArr.length === 0) {
+			luArr.push([zxp]);
+		} else {
+			let luLen = luArr.length - 1;
+			let luLast = luArr[luLen][luArr[luLen].length - 1];
+			if (luLast === zxp) {
+				luArr[luLen].push(zxp);
+			} else {
+				luArr.push([zxp]);
+			}
+		}
+		console.log(resArr);
+		console.log(luArr);
+		resBox.innerHTML = resArr.join(',');
+		luBox.innerHTML = luArr.join(',');
+	}
+	
+	function yuceFn() {
+		let zxp = '';
+		resArr.innerHTML = zxp;
+	}
+</script>
+</body>
+</html>
